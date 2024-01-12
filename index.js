@@ -3,7 +3,7 @@ const express = require('express')
 const cors = require('cors')
 const app = express()
 const port = process.env.PORT || 5000;
-import {pool} from './db.js';
+// import { pool } from './db'; // TODO: HANDLE error 
 
 // req 
 app.use(express.json());
@@ -13,9 +13,27 @@ app.use(cors({
     credentials: true
 }));
 
+// Create a books
+app.post('/books', (req, res) => {
+    try {
+        const book = req.body;
+        const { title, author } = book;
+        res.status(201).json({ message: `a book created. \n Title: ${title}, Author: ${author}` })
+    } catch (error) {
+        console.log(error.message);
+        res.status(500).json({ message: error.message })
+    }
+})
+
+// Read the books
 app.get('/books', (req, res) => {
-    res.status(200).json({message: 'books found'})
-    // res.send({message: 'books found'});
+    try {
+        res.status(200).json({ message: 'books found' })
+        // res.send({message: 'books found'});
+    } catch (error) {
+        console.log(error.message);
+        res.status(500).json({ message: error.message })
+    }
 })
 app.get('/', (req, res) => {
     res.send('Postgres Server Is On')
