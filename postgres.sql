@@ -22,3 +22,10 @@ VALUES
     --     'Don't take it Easy',
     --     'Mrs. Easy'
     -- );
+
+    -- POST BODY
+    -- {
+    --     "title" : "The brain",
+    --     "author" : "My brain",
+    -- }
+    

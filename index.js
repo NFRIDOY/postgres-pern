@@ -4,6 +4,8 @@ const cors = require('cors')
 const app = express()
 const port = process.env.PORT || 5000;
 // import { pool } from './db'; // TODO: HANDLE error 
+const { v4: uuidv4 } = require('uuid');
+
 
 // req 
 app.use(express.json());
@@ -18,7 +20,8 @@ app.post('/books', (req, res) => {
     try {
         const book = req.body;
         const { title, author } = book;
-        res.status(201).json({ message: `a book created. \n Title: ${title}, Author: ${author}` })
+        const id = uuidv4(); 
+        res.status(201).json({ message: `a book created. \n id: ${id}, Title: ${title}, Author: ${author}` })
     } catch (error) {
         console.log(error.message);
         res.status(500).json({ message: error.message })
