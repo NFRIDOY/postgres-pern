@@ -12,6 +12,10 @@ app.use(cors({
     credentials: true
 }));
 
+app.get('/books', (req, res) => {
+    res.status(200).json({message: 'books found'})
+    // res.send({message: 'books found'});
+})
 app.get('/', (req, res) => {
     res.send('Postgres Server Is On')
 })
